@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parma cEDH European Championship Qualifier</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        :root {
+            --background-color: #080e24;
+            --card-bg: #0e1428;
+            --text-color: #e0e6f0;
+            --accent-color: #4d9de0;
+            --secondary-accent: #e05a47;
+            --red-accent: #e05a47;
+            --green-accent: #50c878;
+            --purple-accent: #b36de0;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --section-spacing: 5rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            font-weight: 400;
+        }
+        
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-content {
+            width: 90%;
+            max-width: 1400px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        header {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            color: white;
+            min-height: 80vh;
+        }
+        
+        .header-content {
+            z-index: 10;
+            max-width: 900px;
+            padding-top: 5rem;
+            margin-bottom: 2rem;
+        }
+
+        .header-content h1 {
+            margin: 3rem 0;
+        }
+        
+        
+        .header-image {
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 3rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .header-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        .event-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--secondary-accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .event-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .meta-item i {
+            color: var(--accent-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            margin: 0 auto;
+            padding: 4rem 0;
+        }
+        
+        section {
+            margin-bottom: var(--section-spacing);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, #162042 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--accent-color);
+        }
+        
+        .card-location::before {
+            background: linear-gradient(90deg, var(--green-accent), var(--red-accent));
+        }
+        
+        .card-registration::before {
+            background: var(--purple-accent);
+        }
+        
+        .card-rules::before {
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-accent));
+        }
+        
+        .card-prizes::before {
+            background: var(--green-accent);
+        }
+        
+        .card-header {
+            padding: 1.8rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .card-body {
+            padding: 1.8rem;
+        }
+        
+        .card-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .card-section {
+            padding-bottom: 1.5rem;
+        }
+        
+        .card-section:not(:last-child) {
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card-title-small {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .card-date .card-title i {
+            color: var(--green-accent);
+        }
+        
+        .card-venue .card-title i {
+            color: var(--red-accent);
+        }
+        
+        .icon-date {
+            color: var(--green-accent);
+        }
+        
+        .icon-venue {
+            color: var(--red-accent);
+        }
+        
+        .icon-rules {
+            color: var(--accent-color);
+        }
+        
+        .icon-proxy {
+            color: var(--secondary-accent);
+        }
+        
+        .icon-prizes {
+            color: var(--green-accent);
+        }
+        
+        .icon-registration {
+            color: var(--purple-accent);
+        }
+        
+        .card-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .highlight {
+            font-weight: 600;
+        }
+        
+        .highlight-blue {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        
+        .highlight-green {
+            color: var(--green-accent);
+            font-weight: 600;
+        }
+        
+        .highlight-red {
+            color: var(--secondary-accent);
+            font-weight: 600;
+        }
+        
+        .highlight-purple {
+            color: var(--purple-accent);
+            font-weight: 600;
+        }
+        
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: transparent;
+            color: var(--accent-color);
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            border: 1px solid var(--accent-color);
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--accent-color);
+            color: var(--background-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(77, 157, 224, 0.3);
+        }
+        
+        .btn-green {
+            color: var(--green-accent);
+            border-color: var(--green-accent);
+        }
+        
+        .btn-green:hover {
+            background-color: var(--green-accent);
+            box-shadow: 0 5px 15px rgba(80, 200, 120, 0.3);
+        }
+        
+        .btn-red {
+            color: var(--red-accent);
+            border-color: var(--red-accent);
+        }
+        
+        .btn-red:hover {
+            background-color: var(--red-accent);
+            box-shadow: 0 5px 15px rgba(224, 90, 71, 0.3);
+        }
+        
+        .btn-purple {
+            color: var(--purple-accent);
+            border-color: var(--purple-accent);
+        }
+        
+        .btn-purple:hover {
+            background-color: var(--purple-accent);
+            box-shadow: 0 5px 15px rgba(179, 109, 224, 0.3);
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, var(--card-bg) 0%, #162042 100%);
+            padding: 4rem;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-accent));
+        }
+        
+        .contact-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .contact-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(77, 157, 224, 0.3);
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(77, 157, 224, 0.4);
+        }
+        
+        .contact-btn i {
+            font-size: 1.2rem;
+        }
+        
+        ul {
+            list-style-type: none;
+        }
+        
+        .requirements-list li {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .requirements-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.7rem;
+            width: 8px;
+            height: 8px;
+            background-color: var(--secondary-accent);
+            border-radius: 50%;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding: 2rem 0;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        .divider {
+            width: 100%;
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 1.5rem 0;
+        }
+        
+        .rules-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .event-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .contact-section {
+                padding: 3rem 1.5rem;
+            }
+            
+            .contact-title {
+                font-size: 2rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">cEDH PARMA</a>
+            <div class="nav-links">
+                <a href="#overview">Details</a>
+                <a href="#registration">Registration</a>
+                <a href="#rules">Rules</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <h1>Parma cEDH European Championship</h1>
+            <div class="event-subtitle">Official Qualifier Event</div>
+            <a href="#registration" class="btn-primary">Register Now</a>
+            
+            <div class="event-meta">
+                <div class="meta-item">
+                    <i class="fa-solid fa-calendar-day"></i>
+                    <span>May 18, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span><a href="https://maps.app.goo.gl/BfKMEjKmQiohd1vP8" target="_blank" style="color: inherit; text-decoration: none;">Corte di Odino, Parma, Italy</a></span>
+                </div>
+                <div class="meta-item">
+                    <i class="fa-solid fa-ticket"></i>
+                    <span>€20 Entry Fee</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header-image">
+            <img src="image.png" alt="Parma cEDH European Championship">
+        </div>
+    </header>
+    
+    <div class="container">
+        <section id="overview">
+            <h2 class="section-title">Event Overview</h2>
+            <p class="section-subtitle">Join us for the official Parma Qualifier for the <a href="https://www.cedheurope.com" style="color: var(--accent-color);">cEDH European Championship</a>! This event offers players the chance to secure an invitation to the Championship, set for November 22-23, 2025, in Munich, Germany.</p>
+            <p class="section-subtitle">The event will be hosted by <a href="https://www.instagram.com/toptradersmtg/?igsh=MWdxMzBkOXM2MGR3aQ%3D%3D&utm_source=qr" style="color: var(--accent-color);">Top Traders</a></p>
+            
+            <div class="cards-grid">
+                <!-- Location Card (Merged Date/Time and Venue) -->
+                <div class="card card-location">
+                    <div class="card-header">
+                        <h3 class="card-title">Event Details</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-section">
+                            <h4 class="card-title card-title-small">
+                                <i class="fa-solid fa-calendar-day icon-date"></i> 
+                                Date & Time
+                            </h4>
+                            <p><strong>Date:</strong> <span class="highlight-green">May 18, 2025</span></p>
+                            <p><strong>Start Time:</strong> <span class="highlight-green">10:00 AM</span></p>
+                            <p>Please arrive at least 30 minutes before the start of the tournament for check-in.</p>
+                        </div>
+                        
+                        <div class="card-section">
+                            <h4 class="card-title card-title-small">
+                                <i class="fa-solid fa-location-dot icon-venue"></i> 
+                                Venue
+                            </h4>
+                            <p><strong>Location:</strong> <span class="highlight-red">Corte di Odino</span></p>
+                            <p><strong>Address:</strong> <span class="highlight-red">Via Mantova, 72, 43122 Parma (Italy)</span></p>
+                            <a href="https://maps.app.goo.gl/BfKMEjKmQiohd1vP8" target="_blank" class="btn-secondary btn-red">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                                View on Map
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Registration Card -->
+                <div class="card card-registration" id="registration">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fa-solid fa-ticket icon-registration"></i> 
+                            Registration
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Entry Fee:</strong> <span class="highlight-purple">€20</span></p>
+                        <p><strong>Payment Method:</strong> PayPal or in place at the event.</p>
+                        <p><strong>Deadline:</strong> Two weeks before the event</p>
+                        <p><strong>Lunch Option:</strong> €10 (must be reserved in advance)</p>
+                        <p>To register, send an email with your name, and whether you want to reserve lunch. You'll receive payment instructions and confirmation.</p>
+                        <a href="mailto:TopTradersGames@gmail.com" class="btn-secondary btn-purple">
+                            <i class="fa-solid fa-envelope"></i>
+                            Register via Email
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Rules Card (Merged Format & Rules and Proxy Policy) -->
+                <div class="card card-rules" id="rules">
+                    <div class="card-header">
+                        <h3 class="card-title">Tournament Rules</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-section">
+                            <h4 class="card-title card-title-small">
+                                <i class="fa-solid fa-book icon-rules"></i> 
+                                Format & Rules
+                            </h4>
+                            <p>This tournament will follow the <span class="highlight-blue">Wizards EDH rules</span> and the <span class="highlight-blue">official banlist (Tier 4)</span> as defined by cEDH Europe.</p>
+                            <p>The tournament will feature Swiss rounds followed by a top-8 playoff. The winner will earn a qualification for the <a href="https://www.cedheurope.com" style="color: var(--accent-color);">European Championship in Munich.</a></p>
+                            
+                            <!--
+                            <div class="rules-links">
+                                <a href="https://magic.wizards.com/en/rules" class="btn-secondary" target="_blank">
+                                    <i class="fa-solid fa-file-lines"></i>
+                                    Basic & Comprehensive Rules
+                                </a>
+                                <a href="https://mtgcommander.net/index.php/rules" class="btn-secondary" target="_blank">
+                                    <i class="fa-solid fa-file-lines"></i>
+                                    Commander Rules
+                                </a>
+                                <a href="https://juizes-mtg-portugal.github.io/" class="btn-secondary" target="_blank">
+                                    <i class="fa-solid fa-file-lines"></i>
+                                    Multiplayer addendum MTR & IPG
+                                </a>
+                            </div>
+                            -->
+                        </div>
+                        
+                        <div class="card-section">
+                            <h4 class="card-title card-title-small">
+                                <i class="fa-solid fa-clone icon-proxy"></i> 
+                                Proxy Policy
+                            </h4>
+                            <p>This event is proxy-friendly with the following requirements:</p>
+                            <ul class="requirements-list">
+                                <li>Proxies must be printed in color</li>
+                                <li>Artwork must be recognizable</li>
+                                <li>No paper slips in front of cards</li>
+                            </ul>
+                            <p>If you have questions about specific proxies, please contact the organizers before the event.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Prizes Card -->
+                <div class="card card-prizes">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fa-solid fa-trophy icon-prizes"></i> 
+                            Prizes
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <p><span class="highlight-green">100% of entry fees</span> will be distributed as prize pool in the form of vouchers redeemable at the event's official vendors.</p>
+                        <p>The tournament <span class="highlight-green">winner will receive a ticket</span> to compete at the European Championship in Munich!</p>
+                        <p>Prize distribution:</p>
+                        <ul class="requirements-list">
+                            <li>1st Place: 30% of prize pool + Qualification ticket</li>
+                            <li>2nd Place: 20% of prize pool</li>
+                            <li>3rd-4th Place: 15% of prize pool each</li>
+                            <li>5th-8th Place: 5% of prize pool each</li>
+                        </ul>
+                        <p>Additional prizes from sponsors may be announced closer to the event date.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="contact-section">
+            <h2 class="contact-title">Questions?</h2>
+            <p>For any information about the tournament, registration process, or venue details, our team is ready to help you.</p>
+            <a href="mailto:TopTradersGames@gmail.com" class="contact-btn">
+                <i class="fa-solid fa-envelope"></i>
+                Contact Us
+            </a>
+        </section>
+    </div>
+    
+    <p class="copyright">© 2025 Parma cEDH European Championship Qualifier | Official Qualifier for <a href="https://www.cedheurope.com" style="color: var(--accent-color);">cEDH Europe</a></p>
+</body>
+</html>
